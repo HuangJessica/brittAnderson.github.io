@@ -1,0 +1,20 @@
+---
+title: Contact
+---
+
+** Professional Address
+   Dept. of Psychology \\
+   University of Waterloo \\
+   Waterloo, ON CANADA N2L 3G1
+
+
+** Phone
+   519.888.4567 x 33056
+
+** Email
+
+   britt@uwaterloo.ca
+
+** Lab Website
+
+   [[https://brittlab.uwaterloo.ca][BrittLab]]

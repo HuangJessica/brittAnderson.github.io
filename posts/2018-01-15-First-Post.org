@@ -1,0 +1,7 @@
+---
+title: Hello World
+author: Britt
+---
+
+** Baby's First Hakyll Post
+   Well, after months (maybe years) of procrastination. I have finally set up a Hakyll blog as part of my resolution to get serious about using Haskell instead of simply reading about using Haskell. Check back and see if there ever emerges another post?

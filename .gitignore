@@ -1,0 +1,7 @@
+*~
+*.o
+*.hi
+dist/
+dist-stack/
+**/.stack-work/
+!.gitignore
