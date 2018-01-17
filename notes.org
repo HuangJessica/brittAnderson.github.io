@@ -15,5 +15,5 @@ At this point I should be able to checkout orgpublish, commit all changes, then 
 And then a simple ~git push --all origin~ should update things for both branches.
 
 The reason for the directory name is you have to provide the repo name and your local repo has the name of its parent directory (unless you set up some sort of an alias). 
-
-
+* Using Tags
+  nice instructions on [[https://javran.github.io/posts/2014-03-01-add-tags-to-your-hakyll-blog.html][add tags to hakyll blog]]
