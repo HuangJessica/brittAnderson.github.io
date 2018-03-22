@@ -1,0 +1,7 @@
+---
+title: Using Hakyll with cabal new-*
+author: Britt
+tags: hakyll, cabal-new
+---
+
+** This is a test 
