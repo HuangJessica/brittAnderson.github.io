@@ -36,11 +36,11 @@
     </section>
     <section>
         <h2 id="git-subtree">Git Subtree</h2>
-<p>I had previously used <code>org-publish</code> for my experimental<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> static blog. That was fine, but this year’s resolution is to use Haskell and not just read about it, so here we are with hakyll, and hakyll has the same challenge that using org-publish did. The website itself lives in a subdirectory, but we want version control to track everything. However, we need master to have our subdirectory as it’s root. There are some instructions for doing this with submodules<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, but I had discovered somewhere<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> how to do it with subtrees, and so I publish the recipe here as a reminder for me, and to help any other NOOBs.</p>
+<p>I had previously used <code>org-publish</code> for my experimental<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> static blog. That was fine, but this year’s resolution is to use Haskell and not just read about it, so here we are with hakyll, and hakyll has the same challenge that using org-publish did. The website itself lives in a subdirectory, but we want version control to track everything. However, we need master to have our subdirectory as it’s root. There are some instructions for doing this with submodules<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, but I had discovered somewhere<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> how to do it with subtrees, and so I publish the recipe here as a reminder for me, and to help any other NOOBs.</p>
 <h2 id="the-how-to">The how-to</h2>
 <p>Let’s assume you have hakyll-init working and that you have just created the example site. First, create your <code>.gitignore</code> and make sure to not track the <code>.stack-work/</code> subdirectory if you use stack. That folder gets big, and you will exceed your github pages space limit.</p>
 <p>Next, and before creating <code>master</code> do a <code>git checkout -b hakyll</code>. You don’t have to name the branch hakyll of course. Make whatever initial edits you want, and then do a first commit.</p>
-<p>Now create the master branch <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>with:</p>
+<p>Now create the master branch <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>with:</p>
 <pre class="shell"><code>git subtree split --squash --prefix _site -b master
 </code></pre>
 <p>At this point you should be able to checkout <code>hakyll</code>, and commit all changes, then</p>
@@ -54,10 +54,10 @@
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>By experimental I mean it was a place for me to experiment with using new tools, not that I was discovering anything that anyone else didn’t already know.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>For example here: <a href="https://www.stackbuilders.com/news/dr-hakyll-create-a-github-page-with-hakyll-and-circleci">Submodule and Hakyll</a><a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Sorry I forget who, would love to give you credit.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>If you have already created a master branch just back up any files you want and the delete the branch and you will recreate it. Then, if you are already tracking things on github you will have to “reset” the master branch there with: <code>git push --force origin master</code><a href="#fnref4">↩</a></p></li>
+<li id="fn1"><p>By experimental I mean it was a place for me to experiment with using new tools, not that I was discovering anything that anyone else didn’t already know.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>For example here: <a href="https://www.stackbuilders.com/news/dr-hakyll-create-a-github-page-with-hakyll-and-circleci">Submodule and Hakyll</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Sorry I forget who, would love to give you credit.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>If you have already created a master branch just back up any files you want and the delete the branch and you will recreate it. Then, if you are already tracking things on github you will have to “reset” the master branch there with: <code>git push --force origin master</code><a href="#fnref4" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
     </section>
