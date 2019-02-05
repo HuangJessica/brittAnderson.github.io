@@ -2,19 +2,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
-import           Text.Pandoc (HTMLMathMethod(..),ObfuscationMethod(..),WriterOptions (..))
 
 
 
 --------------------------------------------------------------------------------
-myPandocCompiler = pandocCompilerWith defaultHakyllReaderOptions
-  defaultHakyllWriterOptions {
-  writerHtml5 = True
-  , writerHighlight = True
-  , writerHTMLMathMethod = MathML Nothing
-  , writerEmailObfuscation = NoObfuscation
-  }
-
 main :: IO ()
 main = hakyll $ do
     match "images/*" $ do
@@ -48,7 +39,7 @@ main = hakyll $ do
                 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ myPandocCompiler
+        compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
             >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
             >>= relativizeUrls
