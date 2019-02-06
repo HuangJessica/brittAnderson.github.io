@@ -1,5 +1,5 @@
 ---
-title: Using Hakyll with cabal new-*
+title: Using Hakyll with cabal new-build
 author: Britt
 tags: hakyll, cabal-new
 ---
