@@ -35,6 +35,25 @@ executable site
   ghc-options:      -threaded
   default-language: Haskell2010
 #+End_src
+
+*** Build your site executable with new-build
+
+=cabal new-build --reorder-goals site.hs=
+
+Often you won't need the reordering option
+
+This will build your site executable and hide it deep within a subdirectory. You can get to it with =cabal new-exec=, but I am accessing it directly here with, 
+
+=./dist-newstyle/build/x86_64-linux/ghc-8.6.3/brittAnderson-github-0.1.0.0/x/site/build/site/site  build=
+
+Depending on your site's name, and the versions of Linux and GHC you are using your path will look similar, but not identical. Just tab from the root directory of your hakyll-website directory and you will eventually get there. You could of course do a =new-install= if you wanted to. 
+
+Now you can also "watch" by replacing "build" with "watch" in the above command. 
+
+Happy posting. 
+
+
+
 * Footnotes
 
 [fn:1] I am describing the "new" commands. By cabal v 3.0 the new commands will be the default if you just type ~cabal install~. 
