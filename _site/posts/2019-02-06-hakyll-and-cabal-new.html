@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>epistemIch - Using Hakyll with cabal new-*</title>
+        <link rel="stylesheet" href="../css/media.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="../">epistemIch</a>
+            </div>
+            <nav>
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <h1>Using Hakyll with cabal new-*</h1>
+            <article>
+    <section class="header">
+        Posted on February  6, 2019
+        
+            by Britt
+        
+    </section>
+    <section class="info">
+      
+      Tags: <a href="../tags/hakyll.html">hakyll</a>, <a href="../tags/cabal-new.html">cabal-new</a>
+      
+    </section>
+    <section>
+        <h2 id="cabal-install-2.0">cabal-install 2.0</h2>
+<p>There are new doings in the world of <code>cabal-install</code> that making using the tool much safer, and more pleasing (and also more complicated). The recipes for these new uses can be found <a href="https://cabal.readthedocs.io/en/latest/nix-local-build-overview.html">here.</a> The main idea is that using a Nix style hashing all your haskell installed packages are given a unique identifier in a store and you can use the “same” package with different options or by compiling with different versions of imported modules and it will all co-exist. You end up developing your haskell packages in a sort-of sandbox. Look to others to explain this better, but it means that you can avoid many of the conflicts that led to stack as build tool. If you are happy with stack there is no big reason to change, but if you want to do everything in the cabal-install world it should be possible.</p>
+<h2 id="make-sure-you-have-a-current-cabal-intall">Make sure you have a current cabal-intall</h2>
+<p>You can get this through stack or through hackage. Try running <code>cabal --version</code> to see that you have 2.2 or higher.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<h2 id="new-install-hakyll">New-install hakyll</h2>
+<p>You will need to have an up-to-date list of haskell packages (<code>cabal new-update</code>). And then you can <code>cabal new-install hakyll</code>. If you have some problems make sure that cabal is on your path. It often lives, in Linux systems, in <code>~/.cabal/bin</code>. This is the same directory that the <code>new-install</code> commands will use for sym linking executables. You should be able to use <code>hakyll-init</code> after that. If you find problems make sure to install <code>hakyll</code> as a library with <code>cabal new-install --lib hakyll</code>.</p>
+<h2 id="mimic-the-stack-commands-from-the-hakyll-tutorials">Mimic the stack commands from the Hakyll tutorials</h2>
+<p>The hakyll home page <a href="https://jaspervdj.be/hakyll/tutorials/02-basics.html">tutorials</a> mostly describe using stack. But you can now use the “new” commands to similar effect.</p>
+<h3 id="you-need-a-.cabal-file">You need a *.cabal file</h3>
+<p>The <code>new-build</code> command will look for a cabal file that describes the dependencies you will need (mostly just hakyll in the simple case - but hakyll will pull in a ton of them).</p>
+<p>Mine looks like this:</p>
+<pre class="shell" data-exports="code"><code>name:               brittAnderson-github 
+version:            0.1.0.0
+build-type:         Simple
+cabal-version:      &gt;= 1.10
+
+executable site
+  main-is:          site.hs
+  build-depends:    base == 4.*
+                  , hakyll == 4.*
+  ghc-options:      -threaded
+  default-language: Haskell2010
+</code></pre>
+<h3 id="build-your-site-executable-with-new-build">Build your site executable with new-build</h3>
+<p><code>cabal new-build --reorder-goals site.hs</code></p>
+<p>Often you won’t need the reordering option</p>
+<p>This will build your site executable and hide it deep within a subdirectory. You can get to it with <code>cabal new-exec</code>, but I am accessing it directly here with,</p>
+<p><code>./dist-newstyle/build/x86_64-linux/ghc-8.6.3/brittAnderson-github-0.1.0.0/x/site/build/site/site  build</code></p>
+<p>Depending on your site’s name, and the versions of Linux and GHC you are using your path will look similar, but not identical. Just tab from the root directory of your hakyll-website directory and you will eventually get there. You could of course do a <code>new-install</code> if you wanted to.</p>
+<p>Now you can also “watch” by replacing “build” with “watch” in the above command.</p>
+<p>Happy posting.</p>
+<h1 id="footnotes">Footnotes</h1>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I am describing the “new” commands. By cabal v 3.0 the new commands will be the default if you just type <code>cabal install</code>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+    </section>
+</article>
+
+        </main>
+
+        <footer>
+            Site proudly generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </footer>
+    </body>
+</html>
