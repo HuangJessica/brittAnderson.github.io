@@ -1,0 +1,40 @@
+---
+title: Using Hakyll with cabal new-*
+author: Britt
+tags: hakyll, cabal-new
+---
+
+** cabal-install 2.0
+There are new doings in the world of ~cabal-install~ that making using the tool much safer, and more pleasing (and also more complicated). The recipes for these new uses can be found [[https://cabal.readthedocs.io/en/latest/nix-local-build-overview.html][here.]] The main idea is that using a Nix style hashing all your haskell installed packages are given a unique identifier in a store and you can use the "same" package with different options or by compiling with different versions of imported modules and it will all co-exist. You end up developing your haskell packages in a sort-of sandbox. Look to others to explain this better, but it means that you can avoid many of the conflicts that led to stack as build tool. If you are happy with stack there is no big reason to change, but if you want to do everything in the cabal-install world it should be possible. 
+
+** Make sure you have a current cabal-intall
+You can get this through stack or through hackage. Try running =cabal --version= to see that you have 2.2 or higher.[fn:1]
+
+** New-install hakyll
+You will need to have an up-to-date list of haskell packages (~cabal new-update~). And then you can =cabal new-install hakyll=. If you have some problems make sure that cabal is on your path. It often lives, in Linux systems, in =~/.cabal/bin=. This is the same directory that the =new-install= commands will use for sym linking executables. You should be able to use =hakyll-init= after that. If you find problems make sure to install =hakyll= as a library with =cabal new-install --lib hakyll=.
+
+** Mimic the stack commands from the Hakyll tutorials
+The hakyll home page [[https://jaspervdj.be/hakyll/tutorials/02-basics.html][tutorials]] mostly describe using stack. But you can now use the "new" commands to similar effect. 
+
+*** You need a *.cabal file
+
+The =new-build= command will look for a cabal file that describes the dependencies you will need (mostly just hakyll in the simple case - but hakyll will pull in a ton of them). 
+
+Mine looks like this:
+
+#+Begin_src shell :exports code
+name:               brittAnderson-github 
+version:            0.1.0.0
+build-type:         Simple
+cabal-version:      >= 1.10
+
+executable site
+  main-is:          site.hs
+  build-depends:    base == 4.*
+                  , hakyll == 4.*
+  ghc-options:      -threaded
+  default-language: Haskell2010
+#+End_src
+* Footnotes
+
+[fn:1] I am describing the "new" commands. By cabal v 3.0 the new commands will be the default if you just type ~cabal install~. 
